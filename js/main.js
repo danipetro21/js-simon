@@ -6,17 +6,30 @@
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 const btn = document.getElementById("btn");
 const numeri = document.querySelector(".numeri");
-let seconds = 30;
+const listaNumeri = document.getElementById("lista");
+const numeriGe = genArrMinMax(5, 1, 50);
+const timerHtml = document.getElementById("timer");
+const punteggio = document.getElementById("punteggio");
+
 
 btn.addEventListener("click",
     function () {
         //stampo a video i numeri casuali
-        numeri.innerHTML += genArrMinMax(5, 1, 50);      
-        //creo timer
-        //dopo il timer compare input per l'utente
-        //verifico se i numeri sono all'interno dell'array dei numeri generati
-        //restituisco il risultato
 
+        for(let i=0; i<5;i++){
+            let nuovoElemento = creaLista();
+            nuovoElemento.append(numeriGe[i]);
+            listaNumeri.appendChild(nuovoElemento);
+        }
+
+        //creo timer
+        creaTimer();
+        //dopo il timer compare input per l'utente
+
+        setTimeout(function () {
+            punteggio.innerHTML = "il tuo punteggio e di " + inputUser();
+        }, 32000);
+        //restituisco il risultato
     });
 
 
@@ -43,6 +56,10 @@ function genArrMinMax(quanti, minNum, maxNum) {
     return arrayRandom;
 }
 
+function creaLista() {
+    const lista = document.createElement("li");
+    return lista;
+}
 
 // // FUNZIONE RIPROVA
 
@@ -52,10 +69,34 @@ function genArrMinMax(quanti, minNum, maxNum) {
 
 // FUNZIONE TIMER
 
-function timer(second) {
-    
-    second--;
+function creaTimer() {
 
+    var sec = 30;
+    var timer = setInterval(function () {
+        document.getElementById('timer').innerHTML = '00:' + sec;
+        sec--;
+        if (sec < 0) {
+            clearInterval(timer);
+            numeri.classList.add("hide");
+        }
+    }, 1000);
 }
 
+
+// input utente e verifica del punteggio
+
+function inputUser() {
+    let counter = 0;
+    for (let i = 0; i < 5; i++) {
+        let inputU = prompt("Inserisci un numero");
+        //verifico se i numeri sono all'interno dell'array dei numeri generati
+
+        if (inputU == numeriGe[i]) {
+            counter++;
+        }
+    }
+
+    return counter;
+
+}
 

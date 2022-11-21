@@ -6,10 +6,10 @@
 
 
 .container{
-    margin: 0 auto;
+    margin: 100px auto;
     width: 1000px;
-    height: 1000px;
-    background-color: bisque;
+    height: 400px;
+    background-color: rgb(237, 232, 225);
     border: 2px solid black;
 }
 
@@ -21,7 +21,43 @@
 }
 
 .numeri{
-    font-size: 50px;
+    font-size: 100px;
     text-align: center;
     margin-top: 50px;
+    
+}
+
+.hide{
+    display: none;
+}
+.visibile{
+    display: block;
+}
+
+
+li{
+    list-style: none;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+.risultato{
+    text-align: center;
+    font-size: 30px;
+}
+
+#timer{
+    font-size: 40px;
+    color: red;
+    align-self: center;
+}
+
+#btn{
+    background-color: greenyellow;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 20px;
 }
